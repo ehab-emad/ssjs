@@ -51,17 +51,17 @@ app.use((req, res, next) => {
 });
 
 // دالة للحصول على قائمة الصور من Cloudinary
-// async function fetchImageList() {
-//   return new Promise((resolve, reject) => {
-//     cloudinary.api.resources({ type: 'upload', max_results: 100 }, (error, result) => {
-//       if (error) {
-//         reject(error);
-//       } else {
-//         resolve(result.resources);
-//       }
-//     });
-//   });
-// }
+async function fetchImageList() {
+  return new Promise((resolve, reject) => {
+    cloudinary.api.resources({ type: 'upload', max_results: 100 }, (error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result.resources);
+      }
+    });
+  });
+}
 
 // تحديث db.json بالصور
 async function updateDbWithImages() {
