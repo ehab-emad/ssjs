@@ -4,10 +4,10 @@
 
 const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router('./db.json');
+const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const multer  = require('multer')
-const port = process.env.PORT || 30008
+const port = process.env.PORT || 3007
 ;
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -30,7 +30,9 @@ server.post("/products",(req, res, next) => {
   // Continue to JSON Server router
   next()
 })
-
+server.listen(port, () => {
+  console.log(`JSON Server is running on port ${port}`);
+});
 server.use(middlewares);
 server.use(router);
 server.listen(port)
