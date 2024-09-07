@@ -174,7 +174,7 @@ app.get('/', (req, res) => {
 });
 
 // قراءة ملف db.json وعرض الصور
-app.get('/images', (req, res) => {
+app.get('/products', (req, res) => {
   if (fs.existsSync(dbFilePath)) {
     const db = JSON.parse(fs.readFileSync(dbFilePath));
     res.json(db.images);
@@ -184,7 +184,7 @@ app.get('/images', (req, res) => {
 });
 
 // إضافة صورة جديدة
-app.post('/images', async (req, res) => {
+app.post('/products', async (req, res) => {
   const { title, url } = req.body;
 
   if (!title || !url) {
@@ -214,7 +214,7 @@ app.post('/images', async (req, res) => {
 });
 
 // حذف صورة
-app.delete('/images/:id', async (req, res) => {
+app.delete('/products/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -253,7 +253,7 @@ app.delete('/images/:id', async (req, res) => {
 });
 
 // جلب صورة بناءً على ID
-app.get('/images/:id', (req, res) => {
+app.get('/products/:id', (req, res) => {
   const { id } = req.params;
 
   try {
@@ -277,7 +277,7 @@ app.get('/images/:id', (req, res) => {
 });
 
 // حذف الصور المتشابهة
-app.delete('/images/duplicates', async (req, res) => {
+app.delete('/products/duplicates', async (req, res) => {
   try {
     const images = await fetchImageList();
 
